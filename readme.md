@@ -53,8 +53,6 @@ This project contains APIs and Services for managing Retail point of sales billi
         - Remove
         - Edit
         - Get / List
-
-
 - Customer Management
     - Create Customer
     - Get Customer / List Customer
@@ -69,4 +67,78 @@ This project contains APIs and Services for managing Retail point of sales billi
     
 - User Management
     - Login features
-    
+
+
+### Entity Model
+
+#### Product
+- _id - ObjectId
+- name - String
+- description - String
+- price - Number
+- category - String
+- brand - String
+- rating - Number
+- gender - String[]
+- fabricType - String
+
+#### ProductVariant
+
+- _id - ObjectId
+- productId - ObjectId #ref to Product
+- color - String
+- size - String
+
+#### Inventory
+
+- _id - ObjectId
+- productId - ObjectId #ref to Product
+- productVariantId - ObjectId #ref to ProductVariant
+- quantity - Number
+
+#### Customer
+
+- _id - ObjectId
+- name - String
+- email - String
+- phone - String
+- address - String
+- city - String
+- state - String
+- country - String
+- zip - String
+
+#### Checkout
+
+- _id - ObjectId
+- customerId - ObjectId #ref to Customer
+- products - Array of Object
+    - productId - ObjectId #ref to Product
+    - productVariantId - ObjectId #ref to ProductVariant
+    - quantity - Number
+    - price - Number
+- totalAmount - Number
+- paymentMethod - String
+- paymentStatus - String
+- tax - Number
+- discount - Number
+- invoiceId - ObjectId #ref to Invoice
+
+#### Invoice
+
+- _id - ObjectId
+- checkoutId - ObjectId #ref to Checkout
+- invoiceNumber - String
+- invoiceDate - Date
+- dueDate - Date
+- totalAmount - Number
+- tax - Number
+- discount - Number
+
+#### User
+
+- _id - ObjectId
+- name - String
+- email - String
+- password - String
+- role - String[]

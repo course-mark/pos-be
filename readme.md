@@ -142,3 +142,31 @@ This project contains APIs and Services for managing Retail point of sales billi
 - email - String
 - password - String
 - role - String[]
+
+
+### REST APIs
+
+#### Product
+
+- POST /api/v1/products
+    - Create a new product
+    - Body: { name, description, price, category, brand, rating, }
+    - Response: { _id, name, description, price, category, brand, rating, }
+
+- GET /api/v1/products
+    - Get list of products
+    - Response: [{ _id, name, description, price, category, brand, rating, }]
+
+- GET /api/v1/products/:id
+    - Get product by id
+    - Response: { _id, name, description, price, category, brand, rating, }
+
+- PUT /api/v1/products/:id
+    - Update product by id
+    - Body: { name, description, price, category, brand, rating, }
+    - Response: { _id, name, description, price, category, brand, rating, }
+
+- DELETE /api/v1/products/:id
+    - Delete product by id
+    - Response: { _id, name, description, price, category, brand, rating, }
+    

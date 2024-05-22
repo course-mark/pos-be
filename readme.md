@@ -67,4 +67,6 @@ This project contains APIs and Services for managing Retail point of sales billi
         - Generating PDF
         - Email
     
+- User Management
+    - Login features
     

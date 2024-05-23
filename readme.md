@@ -107,6 +107,7 @@ This project contains APIs and Services for managing Retail point of sales billi
 - state - String
 - country - String
 - zip - String
+- status - String #enum ['active', 'archived']
 
 #### Checkout
 
@@ -150,7 +151,9 @@ This project contains APIs and Services for managing Retail point of sales billi
 
 - POST /api/v1/products
     - Create a new product
-    - Body: { name, description, price, category, brand, rating, }
+    - Body: { name, description, price, category, brand, rating, varient :[{
+        color, size
+    }] }
     - Response: { _id, name, description, price, category, brand, rating, }
 
 - GET /api/v1/products
@@ -169,4 +172,110 @@ This project contains APIs and Services for managing Retail point of sales billi
 - DELETE /api/v1/products/:id
     - Delete product by id
     - Response: { _id, name, description, price, category, brand, rating, }
-    
+
+#### ProductVariant
+
+- POST /api/v1/products/:productId/variants
+    - Create a new product variant
+    - Body: { color, size }
+    - Response: { _id, productId, color, size }
+
+- GET /api/v1/products/:productId/variants
+    - Get list of product variants
+    - Response: [{ _id, productId, color, size }]
+
+- GET /api/v1/products/:productId/variants/:id
+    - Get product variant by id
+    - Response: { _id, productId, color, size }
+
+- PUT /api/v1/products/:productId/variants/:id
+    - Update product variant by id
+    - Body: { color, size }
+    - Response: { _id, productId, color, size }
+
+- DELETE /api/v1/products/:productId/variants/:id
+    - Delete product variant by id
+    - Response: { _id, productId, color, size }
+
+#### Inventory
+
+- GET /api/v1/inventory
+    - Get list of inventory
+    - Query: { productId, productVariantId }
+    - Response: [{ _id, productId, productVariantId, quantity }]
+
+- PUT /api/v1/inventory/:id
+    - Update inventory by id
+    - Body: { quantity, action: 'add' | 'remove'}
+    - Response: { _id, productId, productVariantId, quantity }
+
+#### Customer
+
+- POST /api/v1/customers
+    - Create a new customer
+    - Body: { name, email, phone, address, city, state, country, zip }
+    - Response: { _id, name, email, phone, address, city, state, country, zip }
+
+- GET /api/v1/customers
+    - Get list of customers
+    - Response: [{ _id, name, email, phone, address, city, state, country, zip, status }]
+
+- GET /api/v1/customers/:id
+    - Get customer by id
+    - Response: { _id, name, email, phone, address, city, state, country, zip, status }
+
+- PUT /api/v1/customers/:id
+    - Update customer by id
+    - Body: { name, email, phone, address, city, state, country, zip, status }
+    - Response: { _id, name, email, phone, address, city, state, country, zip }
+
+- DELETE /api/v1/customers/:id
+    - Delete customer by id
+    - Response: { _id, name, email, phone, address, city, state, country, zip }
+
+#### Checkout
+
+- POST /api/v1/checkout
+    - Create a new checkout
+    - Body: { customerId, products: [{ productId, productVariantId, quantity, price }], paymentMethod }
+    - Response: { _id, customerId, products, totalAmount, paymentMethod, paymentStatus, tax, discount, invoiceId }
+
+- GET /api/v1/checkout
+    - Get list of checkouts
+    - Response: [{ _id, customerId, products, totalAmount, paymentMethod, paymentStatus, tax, discount, invoiceId }]
+
+- GET /api/v1/checkout/:id
+    - Get checkout by id
+    - Response: { _id, customerId, products, totalAmount, paymentMethod, paymentStatus, tax, discount, invoiceId }
+
+#### Invoice
+
+- POST /api/v1/invoice
+    - Create a new invoice
+    - Body: { checkoutId, invoiceNumber, invoiceDate, dueDate, totalAmount, tax, discount }
+    - Response: { _id, checkoutId, invoiceNumber, invoiceDate, dueDate, totalAmount, tax, discount }
+
+- GET /api/v1/invoice
+    - Get list of invoices
+    - Response: [{ _id, checkoutId, invoiceNumber, invoiceDate, dueDate, totalAmount, tax, discount }]
+
+- GET /api/v1/invoice/:id
+    - Get invoice by id
+    - Response: { _id, checkoutId, invoiceNumber, invoiceDate, dueDate, totalAmount, tax, discount }
+
+#### User / Auth
+
+- POST /api/v1/login
+    - Login user
+    - Body: { email, password }
+    - Response: { _id, name, email, role }
+
+- PATCH /api/v1/forgot-password
+    - Forgot password
+    - Body: { email }
+    - Response: { message: 'Password reset link sent to your email' }
+
+- PATCH /api/v1/forgot-password/:token
+    - Reset password
+    - Body: { password }
+    - Response: { message: 'Password reset successfully' }

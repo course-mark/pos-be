@@ -9,6 +9,11 @@ This project contains APIs and Services for managing Retail point of sales billi
 - [@sukhleensandhu](https://www.github.com/sukhleensandhu)
 
 
+## Project initialization
+
+```bash
+npx typescript-express-starter
+```
 
 
 ## Features

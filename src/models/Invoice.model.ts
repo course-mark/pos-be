@@ -1,7 +1,6 @@
 import { model, Schema, Document } from 'mongoose';
 
 const invoiceSchema: Schema = new Schema({
-
   checkoutId: {
     type: String,
     required: true,
@@ -16,7 +15,7 @@ const invoiceSchema: Schema = new Schema({
     required: true,
     unique: true,
   },
-  
+
   totalAmount: {
     type: Number,
     required: true,
@@ -30,8 +29,9 @@ const invoiceSchema: Schema = new Schema({
   discount: {
     type: Number,
     required: true,
+    default: 0,
     unique: true,
   },
-  });
+});
 
 export const invoiceModel = model('invoice', invoiceSchema);

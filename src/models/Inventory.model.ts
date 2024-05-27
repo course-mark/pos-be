@@ -15,6 +15,6 @@ const inventorySchema: Schema = new Schema({
     required: true,
     unique: true,
   },
-  });
+});
 
 export const inventoryModel = model('inventory', inventorySchema);

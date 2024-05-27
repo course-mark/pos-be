@@ -6,7 +6,7 @@ const ProductsSchema: Schema = new Schema({
     required: true,
     unique: true,
   },
-  discription: {
+  description: {
     type: String,
     required: true,
   },
@@ -14,7 +14,6 @@ const ProductsSchema: Schema = new Schema({
     type: Number,
     required: true,
   },
-  
   category: {
     type: String,
     required: true,
@@ -25,4 +24,4 @@ const ProductsSchema: Schema = new Schema({
   },
 });
 
-export const ProductsModel = model('Products', ProductsSchema);
+export const ProductsModel = model('products', ProductsSchema);

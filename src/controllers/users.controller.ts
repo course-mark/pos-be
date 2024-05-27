@@ -4,7 +4,7 @@ import { User } from '@interfaces/users.interface';
 import { UserService } from '@services/users.service';
 
 export class UserController {
-  public user = Container.get(UserService);
+  public user = new UserService()
 
   public getUsers = async (req: Request, res: Response, next: NextFunction) => {
     try {

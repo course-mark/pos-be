@@ -1,14 +1,15 @@
-import { hash } from 'bcrypt';
 import { Service } from 'typedi';
-import { HttpException } from '@exceptions/httpException';
-import { User } from '@interfaces/users.interface';
-import { UserModel } from '@models/users.model';
 
 @Service()
 export class ProductService {
-  public async findAllProducts(): Promise<any> {
-    const users: User[] = await UserModel.find();
-    return users;
-  }
-
+  // TODO: Implement the logic to get all products
+  // public getProducts = async ()=> {}
+  // TODO: Implement the logic to get a product by id
+  // public getProductById = async ()=> {}
+  // TODO: Implement the logic to create a product
+  // public createProduct = async ()=> {}
+  // TODO: Implement the logic to update a product
+  // public updateProduct = async ()=> {}
+  // TODO: Implement the logic to delete a product
+  // public deleteProduct = async ()=> {}
 }

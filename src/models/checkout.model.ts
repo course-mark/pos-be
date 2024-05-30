@@ -1,7 +1,6 @@
 import { model, Schema, Document } from 'mongoose';
 
 const checkoutSchema: Schema = new Schema({
-
   customerId: {
     type: String,
     required: true,
@@ -11,13 +10,13 @@ const checkoutSchema: Schema = new Schema({
     required: true,
     unique: true,
   },
-  
+
   totalAmount: {
     type: Number,
     required: true,
     unique: true,
   },
-  
+
   paymentStatus: {
     type: String,
     required: true,
@@ -33,6 +32,6 @@ const checkoutSchema: Schema = new Schema({
     required: true,
     unique: true,
   },
-  });
+});
 
 export const checkoutModel = model('checkout', checkoutSchema);

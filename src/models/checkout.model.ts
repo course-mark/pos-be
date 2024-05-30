@@ -1,15 +1,27 @@
-import { model, Schema, Document } from 'mongoose';
+import mongoose, { model, Schema, Document } from 'mongoose';
 
 const checkoutSchema: Schema = new Schema({
   customerId: {
-    type: String,
+    type: Schema.Types.ObjectId,
     required: true,
   },
-  products: {
-    type: String,
-    required: true,
-    unique: true,
-  },
+  items: [
+    {
+      productId: {
+        type: Schema.Types.ObjectId,
+        ref: 'products',
+        required: true,
+      },
+      quantity: {
+        type: Number,
+        required: true,
+      },
+      price: {
+        type: Number,
+        required: true,
+      },
+    },
+  ],
 
   totalAmount: {
     type: Number,

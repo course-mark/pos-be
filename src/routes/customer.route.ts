@@ -14,6 +14,7 @@ export class CustomerRoute implements Routes {
   private initializeRoutes() {
     this.router.get(`${this.path}`, this.customer.getCustomers);
     this.router.get(`${this.path}/:id`, this.customer.getCustomerById);
+    // this.router.get(`${this.path}/:id/pdf`, this.customer.getCustomerPDF); // TODO: Generate PDF controller
     this.router.post(`${this.path}`, this.customer.createCustomer);
     this.router.put(`${this.path}/:id`, this.customer.updateCustomer);
     this.router.delete(`${this.path}/:id`, this.customer.deleteCustomer);

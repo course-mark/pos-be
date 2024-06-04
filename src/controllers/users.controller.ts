@@ -68,6 +68,7 @@ export class UserController {
    */
   public generatePdf = async (req: Request, res: Response, next: NextFunction) => {
     try {
+      // database fetch in case of id
       const invoices = await generateTemplate(
         {
           name: req.query.name as string,

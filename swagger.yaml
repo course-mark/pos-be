@@ -1,112 +1,590 @@
 tags:
-- name: users
-  description: users API
+  - name: users
+    description: users API
 
 paths:
-# [GET] users
+  # [GET] users
   /users:
     get:
       tags:
-      - users
+        - users
       summary: Find All Users
       responses:
         200:
-          description: 'OK'
+          description: "OK"
         500:
-          description: 'Server Error'
+          description: "Server Error"
 
-# [POST] users
+    # [POST] users
     post:
       tags:
-      - users
+        - users
       summary: Add User
       parameters:
-      - name: body
-        in: body
-        description: user Data
-        required: true
-        schema:
-          $ref: '#/definitions/users'
+        - name: body
+          in: body
+          description: user Data
+          required: true
+          schema:
+            $ref: "#/definitions/users"
       responses:
         201:
-          description: 'Created'
+          description: "Created"
         400:
-          description: 'Bad Request'
+          description: "Bad Request"
         409:
-          description: 'Conflict'
+          description: "Conflict"
         500:
-          description: 'Server Error'
+          description: "Server Error"
 
-# [GET] users/id
+  # [GET] users/id
   /users/{id}:
     get:
       tags:
-      - users
+        - users
       summary: Find User By Id
       parameters:
-      - name: id
-        in: path
-        description: User Id
-        required: true
+        - name: id
+          in: path
+          description: User Id
+          required: true
       responses:
         200:
-          description: 'OK'
+          description: "OK"
         409:
-          description: 'Conflict'
+          description: "Conflict"
         500:
-          description: 'Server Error'
+          description: "Server Error"
 
-# [PUT] users/id
+    # [PUT] users/id
     put:
       tags:
-      - users
+        - users
       summary: Update User By Id
       parameters:
-      - name: id
-        in: path
-        description: user Id
-        required: true
-      - name: body
-        in: body
-        description: user Data
-        required: true
-        schema:
-          $ref: '#/definitions/users'
+        - name: id
+          in: path
+          description: user Id
+          required: true
+          type: string
+        - name: body
+          in: body
+          description: user Data
+          required: true
+          schema:
+            $ref: "#/definitions/users"
       responses:
         200:
-          description: 'OK'
+          description: "OK"
         400:
-          description: 'Bad Request'
+          description: "Bad Request"
         409:
-          description: 'Conflict'
+          description: "Conflict"
         500:
-          description: 'Server Error'
+          description: "Server Error"
 
-# [DELETE] users/id
+    # [DELETE] users/id
     delete:
       tags:
-      - users
+        - users
       summary: Delete User By Id
       parameters:
-      - name: id
-        in: path
-        description: user Id
-        required: true
+        - name: id
+          in: path
+          description: user Id
+          required: true
+          type: string
       responses:
         200:
-          description: 'OK'
+          description: "OK"
         409:
-          description: 'Conflict'
+          description: "Conflict"
         500:
-          description: 'Server Error'
+          description: "Server Error"
+  /products:
+    get:
+      tags:
+        - products
+      summary: Find All Products
+      responses:
+        200:
+          description: "OK"
+        500:
+          description: "Server Error"
+    post:
+      tags:
+        - products
+      summary: Add Product
+      parameters:
+        - name: body
+          in: body
+          description: product data
+          required: true
+          schema:
+            $ref: "#/definitions/products"
+      responses:
+        201:
+          description: "Created"
+        400:
+          description: "Bad Request"
+        409:
+          description: "Conflict"
+        500:
+          description: "Server Error"
+
+  /products/{id}:
+    get:
+      tags:
+        - products
+      summary: Find product By Id
+      parameters:
+        - name: id
+          in: path
+          description: product Id
+          required: true
+      responses:
+        200:
+          description: "OK"
+        409:
+          description: "Conflict"
+        500:
+          description: "Server Error"
+    put:
+      tags:
+        - products
+      summary: Update product By Id
+      parameters:
+        - name: id
+          in: path
+          description: product Id
+          required: true
+          type: string
+        - name: body
+          in: body
+          description: product Data
+          required: true
+          schema:
+            $ref: "#/definitions/products"
+      responses:
+        200:
+          description: "OK"
+        400:
+          description: "Bad Request"
+        409:
+          description: "Conflict"
+        500:
+          description: "Server Error"
+    delete:
+      tags:
+        - products
+      summary: delete Product
+      parameters:
+        - name: body
+          in: body
+          description: product data
+          required: true
+          schema:
+            $ref: "#/definitions/products"
+      responses:
+        201:
+          description: "Deleted"
+        400:
+          description: "Bad Request"
+        409:
+          description: "Conflict"
+        500:
+          description: "Server Error"
+
+  /invoices:
+    get:
+      tags:
+        - invoices
+      summary: Find All invoices
+      responses:
+        200:
+          description: "OK"
+        500:
+          description: "Server Error"
+    post:
+      tags:
+        - invoices
+      summary: Add invoice
+      parameters:
+        - name: body
+          in: body
+          description: invoice data
+          required: true
+          schema:
+            $ref: "#/definitions/invoices"
+      responses:
+        201:
+          description: "Created"
+        400:
+          description: "Bad Request"
+        409:
+          description: "Conflict"
+        500:
+          description: "Server Error"
+
+  /invoices/{id}:
+    get:
+      tags:
+        - invoices
+      summary: Find invoice By Id
+      parameters:
+        - name: id
+          in: path
+          description: invoice Id
+          required: true
+      responses:
+        200:
+          description: "OK"
+        409:
+          description: "Conflict"
+        500:
+          description: "Server Error"
+    put:
+      tags:
+        - invoices
+      summary: Update invoice By Id
+      parameters:
+        - name: id
+          in: path
+          description: invoice Id
+          required: true
+          type: string
+        - name: body
+          in: body
+          description: invoice Data
+          required: true
+          schema:
+            $ref: "#/definitions/invoices"
+      responses:
+        200:
+          description: "OK"
+        400:
+          description: "Bad Request"
+        409:
+          description: "Conflict"
+        500:
+          description: "Server Error"
+    delete:
+      tags:
+        - invoices
+      summary: delete invoice
+      parameters:
+        - name: query
+          in: query
+          description: invoice data
+          required: true
+          schema:
+            $ref: "#/definitions/invoices"
+      responses:
+        201:
+          description: "Deleted"
+        400:
+          description: "Bad Request"
+        409:
+          description: "Conflict"
+        500:
+          description: "Server Error"
+  /inventories:
+    get:
+      tags:
+        - invoices
+      summary: Find All invoices
+      responses:
+        200:
+          description: "OK"
+        500:
+          description: "Server Error"
+    post:
+      tags:
+        - invoices
+      summary: Add invoice
+      parameters:
+        - name: body
+          in: body
+          description: invoice data
+          required: true
+          schema:
+            $ref: "#/definitions/invoices"
+      responses:
+        201:
+          description: "Created"
+        400:
+          description: "Bad Request"
+        409:
+          description: "Conflict"
+        500:
+          description: "Server Error"
+
+  /inventories/{id}:
+    get:
+      tags:
+        - inventories
+      summary: Find inventory By Id
+      parameters:
+        - name: id
+          in: path
+          description: inventory Id
+          required: true
+      responses:
+        200:
+          description: "OK"
+        409:
+          description: "Conflict"
+        500:
+          description: "Server Error"
+    put:
+      tags:
+        - inventories
+      summary: Update inventory By Id
+      parameters:
+        - name: id
+          in: path
+          description: inventory Id
+          required: true
+          type: string
+        - name: body
+          in: body
+          description: inventory Data
+          required: true
+          schema:
+            $ref: "#/definitions/inventories"
+      responses:
+        200:
+          description: "OK"
+        400:
+          description: "Bad Request"
+        409:
+          description: "Conflict"
+        500:
+          description: "Server Error"
+    delete:
+      tags:
+        - inventories
+      summary: delete inventory
+      parameters:
+        - name: id
+          in: path
+          description: inventory data
+          required: true
+          type: string
+      responses:
+        201:
+          description: "Deleted"
+        400:
+          description: "Bad Request"
+        409:
+          description: "Conflict"
+        500:
+          description: "Server Error"
+  /customers:
+    get:
+      tags:
+        - customers
+      summary: Find All customers
+      parameters:
+      - name: page
+        in: query
+        description: page number
+        required: true
+        type: string
+      - name: viewSize
+        in: query
+        description: record number in single page
+        required: true
+        type: number
+      
+      responses:
+        200:
+          description: "OK"
+        500:
+          description: "Server Error"
+    post:
+      tags:
+        - customers
+      summary: Add customer
+      parameters:
+        - name: body
+          in: body
+          description: customer data
+          required: true
+          schema:
+            $ref: "#/definitions/customers"
+      responses:
+        201:
+          description: "Created"
+        400:
+          description: "Bad Request"
+        409:
+          description: "Conflict"
+        500:
+          description: "Server Error"
+
+  /customers/{id}:
+    get:
+      tags:
+        - customers
+      summary: Find customer By Id
+      parameters:
+        - name: id
+          in: path
+          description: customer Id
+          required: true
+      responses:
+        200:
+          description: "OK"
+        409:
+          description: "Conflict"
+        500:
+          description: "Server Error"
+    put:
+      tags:
+        - customers
+      summary: Update customer By Id
+      parameters:
+        - name: id
+          in: path
+          description: customer Id
+          required: true
+          type: string
+        - name: body
+          in: body
+          description: customer Data
+          required: true
+          schema:
+            $ref: "#/definitions/customers"
+      responses:
+        200:
+          description: "OK"
+        400:
+          description: "Bad Request"
+        409:
+          description: "Conflict"
+        500:
+          description: "Server Error"
+    delete:
+      tags:
+        - customers
+      summary: delete invoice
+      parameters:
+        - name: id
+          in: path
+          description: customer data
+          required: true
+          type: string
+      responses:
+        201:
+          description: "Deleted"
+        400:
+          description: "Bad Request"
+        409:
+          description: "Conflict"
+        500:
+          description: "Server Error"
+  /checkouts:
+    get:
+      tags:
+        - checkouts
+      summary: Find All invoices
+      responses:
+        200:
+          description: "OK"
+        500:
+          description: "Server Error"
+    post:
+      tags:
+        - checkouts
+      summary: Add checkout
+      parameters:
+        - name: body
+          in: body
+          description: checkout data
+          required: true
+          schema:
+            $ref: "#/definitions/checkouts"
+      responses:
+        201:
+          description: "Created"
+        400:
+          description: "Bad Request"
+        409:
+          description: "Conflict"
+        500:
+          description: "Server Error"
+  /checkouts/{id}:
+    get:
+      tags:
+        - checkouts
+      summary: Find checkout By Id
+      parameters:
+        - name: id
+          in: path
+          description: checkout Id
+          required: true
+      responses:
+        200:
+          description: "OK"
+        409:
+          description: "Conflict"
+        500:
+          description: "Server Error"
+    put:
+      tags:
+        - checkouts
+      summary: Update checkout By Id
+      parameters:
+        - name: id
+          in: path
+          description: checkout Id
+          required: true
+          type: string
+        - name: body
+          in: body
+          description: checkout Data
+          required: true
+          schema:
+            $ref: "#/definitions/invoices"
+      responses:
+        200:
+          description: "OK"
+        400:
+          description: "Bad Request"
+        409:
+          description: "Conflict"
+        500:
+          description: "Server Error"
+    delete:
+      tags:
+        - checkouts
+      summary: delete checkout
+      parameters:
+        - name: id
+          in: path
+          description: checkout data
+          required: true
+          type: string
+      responses:
+        201:
+          description: "Deleted"
+        400:
+          description: "Bad Request"
+        409:
+          description: "Conflict"
+        500:
+          description: "Server Error"
+
+
 
 # definitions
 definitions:
   users:
     type: object
     required:
-        - email
-        - password
+      - email
+      - password
     properties:
       email:
         type: string
@@ -114,7 +592,139 @@ definitions:
       password:
         type: string
         description: user Password
+      address:
+        type: string
+        description: user Password
 
+  products:
+    type: object
+    required:
+      - name
+      - description
+      - price
+      - category
+      - brand
+    properties:
+      name:
+        type: string
+        description: product name
+      description:
+        type: string
+        description: description of the product
+      price:
+        type: number
+        description: price of the product
+      category:
+        type: string
+        description: category of product
+      brand:
+        type: string
+        description: brand of product
+
+  invoice:
+    type: object
+    required:
+      - checkoutId
+      - invoiceNumber
+      - invoiceDate
+      - totalAmount
+      - tax
+      - discount
+    properties:
+      checkoutId:
+        type: string
+        description: checkout id of product
+      invoiceNumber:
+        type: number
+        description: invoiceNumber of the product
+      invoiceDate:
+        type: date
+        description: invoiceDate of product
+      totalAmount:
+        type: number
+        description: totalAmount of product
+      tax:
+        type: number
+        description: tax on product
+      discount:
+        type: number
+        description: discount on product
+
+  inventory:
+    type: object
+    required:
+      - id
+      - productId
+      - quantity
+    properties:
+      id:
+        type: string
+        description: inventory id of product
+      productId:
+        type: number
+        description: id of the product
+      quantity:
+        type: number
+        description: quantity of product
+
+  customer:
+    type: object
+    required:
+      - name
+      - email
+    properties:
+      name:
+        type: string
+        description: customer name
+      email:
+        type: string
+        description: customer email
+      phone:
+        type: number
+        description: customer number
+      address:
+        type: string
+        description: customer address
+      city:
+        type: string
+        description: city of customer
+      state:
+        type: string
+        description: state of customer
+      country:
+        type: string
+        description: country of customer
+
+  checkout:
+    type: object
+    required:
+      - customerId
+      - items
+      - quantity
+      - totalAmount
+      - paymentStatus
+      - tax
+      - discount
+    properties:
+      customerId:
+        type: string
+        description: id of customer
+      items:
+        type: number
+        description: id of the product
+      totalAmount:
+        type: number
+        description: total amount of product
+      paymentStatus:
+        type: string
+        description: payment status
+      tax:
+        type: number
+        description: tax on product
+      discount:
+        type: number
+        description: discount on product
 schemes:
- - https
- - http
+  - https
+  - http
+    

@@ -13,23 +13,18 @@ const customerSchema: Schema = new Schema({
   },
   phone: {
     type: Number,
-    unique: true,
   },
   address: {
     type: String,
-    unique: true,
   },
   city: {
     type: String,
-    unique: true,
   },
   state: {
     type: String,
-    unique: true,
   },
   country: {
     type: String,
-    unique: true,
   },
 });
 

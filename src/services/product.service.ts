@@ -4,8 +4,11 @@ import { ProductsModel } from '@models/products.model';
 
 @Service()
 export class ProductService {
-  public async findAllProducts(): Promise<any> {
-    const products: Product[] = await ProductsModel.find();
+  public async findAllProducts(options: any): Promise<any> {
+    const page = options.page || 1;
+    const viewSize = options.viewSize || 5;
+    const skip = (page - 1) * viewSize;
+    const products: Product[] = await ProductsModel.find().skip(skip).limit(viewSize);
     return products;
   }
   public async findProductById(productId: String): Promise<any> {

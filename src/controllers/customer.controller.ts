@@ -7,7 +7,8 @@ export class customerController {
 
   getCustomers = async (req: Request, res: Response, next: NextFunction) => {
     try {
-      const findAllCustomersData: customer[] = await this.customer.findAllCustomer();
+      const { viewSize, page } = req.query;
+      const findAllCustomersData: customer[] = await this.customer.findAllCustomer({ viewSize, page });
 
       res.status(200).json({ data: findAllCustomersData, message: 'findAll' });
     } catch (error) {
@@ -26,9 +27,13 @@ export class customerController {
     }
   };
   createCustomer = async (req: Request, res: Response, next: NextFunction) => {
-    const data = req.body;
-    const createCustomer: customer = await this.customer.createCustomer(data);
-    res.status(200).json({ data: createCustomer, message: 'customerCreated' });
+    try {
+      const data = req.body;
+      const createCustomer: customer = await this.customer.createCustomer(data);
+      res.status(200).json({ data: createCustomer, message: 'customerCreated' });
+    } catch (error) {
+      next(error);
+    }
   };
   updateCustomer = async (req: Request, res: Response, next: NextFunction) => {
     const customerId = req.params.id;

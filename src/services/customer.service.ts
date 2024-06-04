@@ -4,8 +4,20 @@ import { Service } from 'typedi';
 
 @Service()
 export class customerServices {
-  async findAllCustomer(): Promise<any> {
-    const findAll: customer = await customerModel.find();
+  async findAllCustomer(options: any): Promise<any> {
+    const page = options.page || 1;
+    const viewSize = options.viewSize || 5;
+    const skip = (page - 1) * viewSize;
+    /**
+ *  {
+      $skip: (page - 1) * count,
+    },
+    {
+      $limit: count,
+    },
+ */
+    const findAll = await customerModel.find().skip(skip).limit(viewSize);
+
     return findAll;
   }
 

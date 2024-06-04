@@ -2,9 +2,11 @@ import { NextFunction, Request, Response } from 'express';
 import { Container } from 'typedi';
 import { User } from '@interfaces/users.interface';
 import { UserService } from '@services/users.service';
+import { generateCustomPdfBuffer } from '@/utils/generatePdf';
+import { generateTemplate } from '@/utils/generatehtml';
 
 export class UserController {
-  public user = new UserService()
+  public user = new UserService();
 
   public getUsers = async (req: Request, res: Response, next: NextFunction) => {
     try {
@@ -56,6 +58,23 @@ export class UserController {
       const deleteUserData: User = await this.user.deleteUser(userId);
 
       res.status(200).json({ data: deleteUserData, message: 'deleted' });
+    } catch (error) {
+      next(error);
+    }
+  };
+
+  /**
+   * generatePdf
+   */
+  public generatePdf = async (req: Request, res: Response, next: NextFunction) => {
+    try {
+      const invoices = await generateTemplate(
+        {
+          name: req.query.name as string,
+        },
+        'hello-world',
+      );
+      generateCustomPdfBuffer(invoices, res);
     } catch (error) {
       next(error);
     }
